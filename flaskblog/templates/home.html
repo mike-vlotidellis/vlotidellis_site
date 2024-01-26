@@ -7,13 +7,26 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <!-- Favicon -->
+  <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/static/images/logo.png" type="image/x-icon">
+
   <!-- leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-crossorigin=""></script>
+<!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -47,7 +60,7 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: url("/home/mikevlo/flask_vlotidellis/flaskblog/static/images/home_img.jpg");
+  background-image: url("/static/images/home_img.jpg");
   min-height: 100%;
 }
 
@@ -87,7 +100,8 @@ body, html {
     <a href="#home" class="w3-bar-item w3-button w3-text-black"><img class="navlogo-img" src="/static/images/logo.png"></a>
     <a href="#about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><i class="fa fa-user"></i> ABOUT</a>
     <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black "><i class="fa fa-th"></i> GALLERY</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-text-black"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="#equipment" class="w3-bar-item w3-button w3-hide-small w3-text-black"><i class="fa fa-envelope"></i> EQUIPMENT</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-text-black"><i class="fa fa-envelope"></i> CONTACT </a>
     </a>
   </div>
 
@@ -95,6 +109,7 @@ body, html {
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
     <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+    <a href="#equipment" class="w3-bar-item w3-button" onclick="toggleFunction()">EQUIPMENT</a>
     <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
   </div>
 </div>
@@ -185,12 +200,14 @@ body, html {
 </div>
 
 <!-- Container (Contact Section) -->
-<div id="map"></div>
+
+
 <div class="w3-content w3-container w3-padding-64" id="contact">
-  <h3 class="w3-center">WHERE I WORK</h3>
+  <h3 class="w3-center">WAREHOUSE ADDRESS</h3>
   <div class="w3-row w3-padding-32 w3-section">
     <div class="w3-col m4 w3-container">
-      <img src="/static/images/map.jpg" class="w3-image w3-round" style="width:100%">
+      <div id="map" style="height: 200px;"></div>
+      
     </div>
     <div class="w3-col m8 w3-panel">
       <div class="w3-large w3-margin-bottom">
@@ -198,36 +215,37 @@ body, html {
         <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: 210 9412182<br>
         <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: giorgosvlot@yahoo.com &  m.vlotidellis@gmail.com
       </div>
-        <div id="map"></div>
-         <script src="{{ url_for('static', filename='map.js') }}" /></script>
-        <script>
+        <div id="map" style="height: 400px;"></div>
+          <script>    
 
-        {% for marker in markers %}
-          L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}]).addTo(map)
-          .bindPopup("{{ marker['popup'] }}")
-          .openPopup();
-        {% endfor %}
+            var map = L.map('map').setView([37.944694, 23.688492], 16);
 
-        </script>
+            // Add a tile layer (OpenStreetMap tiles)
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+             // Add a marker at the specified location
+            L.marker([37.944694, 23.688492]).addTo(map)
+            .bindPopup("Your Marker Popup Content Here");
+          </script>
 
-      <!--<p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
-      <form action="/action_page.php" target="_blank">
-        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-          <div class="w3-half">
-            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-          </div>
-          <div class="w3-half">
-            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-          </div>
-        </div>
-        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-        <button class="w3-button w3-black w3-right w3-section" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
-        </button>
-      </form>-->
     </div>
   </div>
 </div>
+
+<!-- Third Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-white w3-wide">EQUIPMENT</span>
+  </div>
+</div>
+
+
+<div class="w3-content w3-container w3-padding-64" id="equipment">
+<h3 class="w3-center">AUDIO EQUIPMENT</h3>
+<h8 class="w3-left">AUDIO EQUIPMENT</h8>
+  <div class="w3-row w3-padding-32 w3-section">
+
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">

@@ -8,4 +8,7 @@ from flaskblog import app
 def home():
     return render_template('home.html')
 
+@app.route("/map")
+def map():
+    return render_template('map.html')
 
