@@ -86,6 +86,44 @@ body, html {
     min-height: 400px;
   }
 }
+
+ /* Style for the container holding the lists */
+ .lists-container {
+     display: flex; /* Use flexbox */
+     justify-content: space-around; /* Space evenly between the lists */
+     max-width: 800px; /* Adjust as needed */
+     margin: 0 auto; /* Center the container */
+ }
+  ul.a {
+      list-style-position: outside;
+      padding: 0;
+      font-size: 45px; /* Adjust the font size as needed */
+  }
+
+   .a h4 {
+       font-size: 28px; /* Adjust the font size for the heading */
+       margin-bottom: 10px; /* Add some space below the heading */
+}
+   .a li {
+       font-size: 20px; /* Adjust the font size for each list item */
+       margin-bottom: 10px; /* Add some space between list items */
+   }
+ .sublist {
+          list-style-position: outside;
+          padding-left: 20px; /* Adjust the indentation for the sublist */
+  }
+  .sublist li {
+      font-size: 14px; /* Adjust the font size for sublist items */
+      margin-bottom: 3px; /* Add some space between sublist items */
+    }
+ /* Media queries for smaller screens */
+        @media (max-width: 700px) {
+            .lists-container {
+                flex-direction: column; /* Stack lists vertically on smaller screens */
+                align-items: center; /* Center the lists on smaller screens */
+            }
+            
+        }
 </style>
 </head>
 <body>
@@ -206,7 +244,7 @@ body, html {
   <h3 class="w3-center">WAREHOUSE ADDRESS</h3>
   <div class="w3-row w3-padding-32 w3-section">
     <div class="w3-col m4 w3-container">
-      <div id="map" style="height: 200px;"></div>
+      
       
     </div>
     <div class="w3-col m8 w3-panel">
@@ -215,8 +253,14 @@ body, html {
         <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: 210 9412182<br>
         <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: giorgosvlot@yahoo.com &  m.vlotidellis@gmail.com
       </div>
-        <div id="map" style="height: 400px;"></div>
-          <script>    
+
+          
+
+    </div>
+  </div>
+</div>
+<div id="map" style="height: 350px; width: 100%;"></div>
+<script>    
 
             var map = L.map('map').setView([37.944694, 23.688492], 16);
 
@@ -228,11 +272,6 @@ body, html {
             L.marker([37.944694, 23.688492]).addTo(map)
             .bindPopup("Your Marker Popup Content Here");
           </script>
-
-    </div>
-  </div>
-</div>
-
 <!-- Third Parallax Image with Portfolio Text -->
 <div class="bgimg-3 w3-display-container w3-opacity-min">
   <div class="w3-display-middle">
@@ -242,11 +281,147 @@ body, html {
 
 
 <div class="w3-content w3-container w3-padding-64" id="equipment">
-<h3 class="w3-center">AUDIO EQUIPMENT</h3>
-<h8 class="w3-left">AUDIO EQUIPMENT</h8>
-  <div class="w3-row w3-padding-32 w3-section">
+<h1 class="w3-center">AUDIO EQUIPMENT</h1>
 
 
+<div class="lists-container">
+    <ul class="a">
+      <h4>SPEAKERS</h4>
+        <li>NEXO JEO M12</li>
+        <li>NEXO JEO S12</li>
+        <li>NEXO ALPHA</li>
+        <li>NEXO P 12</li>
+        <li>NEXO PS 15</li>
+        <li>NEXO PS 15R2</li>
+        <li>NEXO PS 10</li>
+        <li>NEXO PS 10R2</li>
+        <li>NEXO RS 15</li>
+        <li>NEXO LS 18</li>
+
+    </ul>
+
+    <ul class="a">
+      <h4>AMPLIFIERS</h4>
+        <li>NEXO NXAMP 4X4 MK2</li>
+        <li>NEXO NXAMP 4X2 MK2</li>
+        <li>NEXO NXAMP 4X4 MK1</li>
+        <li>NEXO NXAMP 4X2 MK1</li>
+        <li>CAMCO VORTEX</li>
+        <li>QSC</li>
+     </ul>
+    <ul class="a">
+      <h4>CONSOLES</h4>
+        <li>AVID S6L 24C</li>
+        <li>AVID PROFILE</li>
+        <li>DIGICO SD8</li>
+        <li>YAMAHA M7CL</li>
+        <li>YAMAHA LS9</li>
+        <li>MIDAS M32</li>
+        <li>MIDAS VENICE 24</li>
+        <li>MIDAS VENICE 32</li>
+        <li>SOUNDCRAFT MH3</li>
+
+   
+
+    </ul>
+</div>
+
+<div class="lists-container">
+    
+
+    <ul class="a">
+      <h4>MICROPHONES</h4>
+        <li>SHURE</li>
+          <ul class="sublist">
+                <li>ULX D</li>
+            </ul>
+        <li>SENNHEISER</li>
+         <ul class="sublist">
+                <li>EW 500</li>
+            </ul>   
+        <li>AKG</li>
+        <li>DPA</li>
+        <li>NEUMANN</li>
+    </ul>
+
+    <ul class="a">
+      <h4>IN EAR MONITOR</h4>
+        <li>AVIOM</li>
+          <ul class="sublist">
+                <li>640</li>
+                <li>A-16II</li>
+                <li>AN-16/i v.2</li>
+                <li>D800</li>
+                <li>D400</li>
+
+            </ul>
+        <li>SENNHEISER</li>
+         <ul class="sublist">
+                <li>SR 2000</li>
+                <li>EW IEM G4</li>
+          </ul>   
+        <li>SHURE</li>
+         <ul class="sublist">
+                <li>P4</li>
+          </ul> 
+        </ul>   
+<ul class="a">
+      <h4>DI</h4>
+        <li>RADIAL</li>
+        <li>BSS</li>
+        <li>KLARK TEKNIK</li>
+        </ul> 
+        </ul>  
+    </div>
+
+
+
+<h1 class="w3-center">LIGHTING EQUIPMENT</h1>
+
+ <div class="lists-container">
+    <ul class="a">
+      <h4>MOVING LIGHTS</h4>
+        <li>DTS SYNERGY</li>
+        <li>DTS ALCHEMY</li>
+        <li>FOS 12R</li>
+        <li>FOS 7R</li>
+        <li>FOS CHAMELEON</li>
+        <li>FOS QUAD II</li>
+
+    </ul>
+
+<ul class="a">
+      <h4>STATIC LIGHTS</h4>
+        <li>FOS PAR 18X10W PRO</li>
+        <li>CHAUVET COLORBand USB</li>
+        <li>FOS PROFILE 15/30</li>
+        <li>FOS PROFILE 25/50</li>
+
+    </ul>
+<ul class="a">
+      <h4>LIGHTING DESK</h4>
+        <li>GRAND MA2 ONPC</li>
+        <li>CHAMSYS MQ50</li>
+        <li>CHAMSYS PC WING</li>
+        <li>AVOLITES PEARL</li>
+
+    </ul>
+</div>
+ <div class="lists-container">
+    <ul class="a">
+      <h4>INTERCOM</h4>
+        <li>GREEN GO WLS BELTPACK X</li>
+        <li>GREEN GO H/W BELTPACK X</li>
+        <li>FOS PROFILE 15/30</li>
+        <li>FOS PROFILE 25/50</li>
+
+    </ul>
+
+  </div>
+ </div>
+<div class="w3-row w3-padding-32 w3-section">
+
+<div>
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
@@ -260,7 +435,7 @@ body, html {
   </div>
   <p>Desing by Mike vlotidellis</p>
 </footer>
- 
+ </div>
 <script>
 // Modal Image Gallery
 function onClick(element) {
@@ -275,9 +450,9 @@ window.onscroll = function() {myFunction()};
 function myFunction() {
     var navbar = document.getElementById("myNavbar");
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-orange";
     } else {
-        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-orange", "");
     }
 }
 
